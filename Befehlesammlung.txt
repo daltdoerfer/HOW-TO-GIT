@@ -1,0 +1,125 @@
+#####################################
+      
+	  2 - Projektverwaltung
+	  
+#####################################
+
+# Erzeugung eines neuen Repository
+git init
+
+# Erzeugen eine GitGub Repository
+git remote add origin <Repository URL>
+git branch -M main
+git push -u origin main
+
+
+# Laden eines Exisitierenden Repositorys
+git clone <Repository URL>
+
+
+#####################################
+      
+	  3 - Basic Befehle
+	  
+#####################################
+
+#--------Status----------
+git status
+
+#--------ADD----------
+git add <filename>
+git add .
+
+#--------COMMIT--------
+git commit -a -m "nachricht"
+
+#--------Einfacher PUSH--------
+git push <remote> <branch> 													# Einzelne Branch
+git push <remote> --all  													# Alle Branches
+git push origin main 														# origin ist Target und main ist source
+
+#--------Standard PUSH--------
+git checkout main
+git fetch origin main
+git rebase -i origin/main 													# Alternativ: git pull -r origin master
+git push origin main
+
+#--------Versionskontrolle---------
+git log 																	# Einzlauflistung aller Commits mit Kommentaren
+git log --graph --oneline --all 											# Tree Liste mit ID und Kommentar
+gitk 																		# Grafische Oberfläche zur Versionskontrolle
+
+#--------Änderungen--------
+
+git reset --soft HEAD^ 														# Letzten lokalen Commit rückgängig machen. 
+git reset --hard HEAD^ 														# löscht ALLE Veränderungen auch im Staging-Bereich UND in der Working Directory
+
+git commit --amend 
+git commit --amend -m "new commit message" 									# Änderungen aus Staging Bereich anhängen und letzten Kommentar ergänzen
+
+#--------Checkout auf alten Stand
+git checkout <SHA1-Hash>
+
+
+#####################################
+      
+	  4 - Branches
+	  
+#####################################
+
+#--------Erstellen von Branches--------
+git branch <Branchname>
+git checkout <Branchname>
+
+git checkout -b <Branchname> # Abkürzung für obige Zeilen
+
+#--------Merging von Branches--------
+git checkout <Branchname> 													# Wechselt in Branch
+git merge main 																# Merged unsere Branch in die main-Branch
+
+git merge <Branchname> main 												# Einzeiler. Gleich wie obige Befehle
+
+#--------Rebasing von Branches--------
+
+#--------Löschen von Braches---------
+git branch -D <Branchname>
+git push origin :<Branchname>
+
+
+#####################################
+      
+	  5 - Workflow Beispiel
+	  
+#####################################
+
+#---------Config (Erstmalig bei neuem Projekt)------------
+git init
+git remote add origin https://github.com/daltdoerfer/HOW-TO-GIT.git			# Setzt das Remote Handle zu Server
+git branch -M main															# Deklariert die lokale Main Branch 
+git remote 																	# Zeigt das Server  Repository Remote Handle
+git remote –v 																# Zeigt die Server URL, die hinterlegt wurde
+
+
+#---------Komplette Repository neu ziehen-----------
+git clone https://github.com/daltdoerfer/HOW-TO-GIT.git						# Wenn Verzeichnis noch leer
+ODER 
+git pull https://github.com/daltdoerfer/HOW-TO-GIT.git						# Wenn Verzeichnis bereits vorhanden
+
+#---------Neue Branch erstellen-------------
+git checkout -b Test_Branch 
+
+#---------Branch Änderung 1------------
+git status
+git add .
+git commit -a -m "Branch Änderung 1"
+git status
+
+#---------Merge Branch Änderung 1 into main------------
+git merge Test_Branch main 
+
+#---------Push der Repository auf Server---------------
+git push origin main 														# Pushed die lokale Main-Branch auf die Remote Origin Branch 
+
+
+
+
