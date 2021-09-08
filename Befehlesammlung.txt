@@ -114,8 +114,17 @@ git add .
 git commit -a -m "Branch Änderung 1"
 git status
 
+#---------Main Änderung 1------------
+git checkout main
+git add .
+git commit -a -m "Main Branch Update"
+
+
 #---------Merge Branch Änderung 1 into main------------
+git checkout Test_Branch
 git merge Test_Branch main 
+# i -> Insert -> ESC -> :wq (save n close)
+
 
 #---------Push der Repository auf Server---------------
 git push origin main 														# Pushed die lokale Main-Branch auf die Remote Origin Branch 
